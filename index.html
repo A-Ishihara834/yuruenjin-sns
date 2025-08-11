@@ -10,6 +10,31 @@
 
   <!-- フォント読み込み -->
   <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1&family=Noto+Sans+JP&display=swap" rel="stylesheet">
+
+  <style>
+    /* 🍌 ミニぷるバナナ配置 */
+    .mini-banana {
+      position: fixed;
+      bottom: 1rem;
+      left: 1rem;
+      z-index: 1000;
+    }
+    /* アニメーション（ポータルと同じ） */
+    .mini-banana img {
+      animation: ring 1s infinite ease-in-out;
+      transform-origin: 50% 0;
+    }
+    @keyframes ring {
+      0%   { transform: rotate(0deg); }
+      10%  { transform: rotate(10deg); }
+      20%  { transform: rotate(-8deg); }
+      30%  { transform: rotate(6deg); }
+      40%  { transform: rotate(-4deg); }
+      50%  { transform: rotate(2deg); }
+      60%  { transform: rotate(-1deg); }
+      70%,100% { transform: rotate(0deg); }
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -34,6 +59,13 @@
       <p>これから少しずつ、写真や言葉がこの中庭に集まってきます。</p>
     </div>
   </main>
+
+  <!-- 🍌 ミニぷるバナナ（ポータルへ戻るリンク） -->
+  <div class="mini-banana">
+    <a href="https://a-ishihara834.github.io/yuruenjin/">
+      <img src="https://a-ishihara834.github.io/yuruenjin/images/saru-banana.png" alt="ポータルへ戻るバナナ" width="40">
+    </a>
+  </div>
 
   <footer>
     <a href="https://a-ishihara834.github.io/yuruenjin/">← ポータルに戻る</a>
