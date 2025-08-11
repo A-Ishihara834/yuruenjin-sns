@@ -25,13 +25,68 @@
       border-radius: 6px;
       max-width: 600px;
     }
+    /* AIゾーン用 */
+    .ai-post-zone {
+      background: rgba(255,255,255,0.85);
+      border-radius: 12px;
+      padding: 1em;
+      margin-top: 2em;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .ai-post-zone input {
+      width: 70%;
+      padding: 0.5em;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    .ai-post-zone button {
+      padding: 0.5em 1em;
+      margin-left: 0.5em;
+      border: none;
+      border-radius: 6px;
+      background-color: #ffcc66;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .ai-post-zone button:hover {
+      background-color: #ffdd88;
+    }
+    #aiOutput p {
+      background: #fff;
+      padding: 0.5em;
+      border-radius: 4px;
+      margin: 0.5em 0;
+    }
   </style>
 </head>
 <body>
   <div class="content">
     <h1>🌸 SNSエリアへようこそ 🌸</h1>
     <p>ここにSNS的コンテンツやリンクを追加できます。</p>
+
+    <!-- AI参加型ゾーン -->
+    <div class="ai-post-zone">
+      <h2>🌟 みんなのひとこと＋AIアレンジ 🌟</h2>
+      <input type="text" id="userInput" placeholder="ひとこと入力..." />
+      <button onclick="aiReply()">送信</button>
+      <div id="aiOutput"></div>
+    </div>
+
     <a href="index.html">← ポータルに戻る</a>
   </div>
+
+  <script>
+  function aiReply() {
+    let text = document.getElementById("userInput").value;
+    if (!text) return;
+    // ★ ここは後で実際のAI API接続に差し替え可
+    let fakeAI = `『${text}』 → AIのひと工夫アレンジ`;
+    let output = document.getElementById("aiOutput");
+    let p = document.createElement("p");
+    p.textContent = fakeAI;
+    output.prepend(p);
+    document.getElementById("userInput").value = "";
+  }
+  </script>
 </body>
 </html>
