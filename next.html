@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>SNS - ゆる縁JIN</title>
+<style>
+  body {
+    margin: 0;
+    overflow: hidden;
+    background: #ffffff;
+    font-family: sans-serif;
+    text-align: center;
+  }
+  header, main, footer {
+    position: relative;
+    z-index: 1;
+    padding: 10px;
+  }
+  #banana {
+    position: absolute;
+    height: 20%;
+    width: auto;
+    z-index: 999;
+  }
+  .post-box {
+    border: 1px solid #ccc;
+    max-width: 400px;
+    margin: 10px auto;
+    padding: 10px;
+    border-radius: 6px;
+    background: #fafafa;
+  }
+  textarea {
+    width: 100%;
+    height: 60px;
+    resize: none;
+  }
+  button {
+    margin-top: 5px;
+    padding: 5px 10px;
+  }
+  .timeline {
+    max-width: 400px;
+    margin: 10px auto;
+    text-align: left;
+  }
+  .post {
+    background: #fff;
+    padding: 6px;
+    margin-bottom: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>ゆる縁JIN SNS</h1>
+  <p><a href="index.html">◀ ポータルに戻る</a></p>
+</header>
+
+<main>
+  <div class="post-box">
+    <textarea id="postText" placeholder="いまの気持ちをシェア..."></textarea>
+    <br>
+    <button id="postButton">投稿</button>
+  </div>
+  <div class="timeline" id="timeline"></div>
+</main>
+
+<footer>
+  <p>&copy; 2025 ゆる縁JIN</p>
+</footer>
+
+<img id="banana" src="images/cute-banana.png" alt="かわいいバナナ">
+
+<script>
+  const banana = document.getElementById('banana');
+  // 前ページから位置と速度を引き継ぐ
+  let x = parseFloat(localStorage.getItem('banana_x')) || 150;
+  let y = parseFloat(localStorage.getItem('banana_y')) || 150;
+  let dx = parseFloat(localStorage.getItem('banana_dx')) || (Math.random() * 4) + 2;
+  let dy = parseFloat(localStorage.getItem('banana_dy')) || (Math.random() * 4) + 2;
+
+  function moveBanana() {
+    const rect = banana.getBoundingClientRect();
+    x += dx; y += dy;
+
+    if (x <= 0 || x + rect.width >= window.innerWidth) {
+      dx = -dx;
+      dy += (Math.random() - 0.5) * 2;
+    }
+    if (y <= 0 || y + rect.height >= window.innerHeight) {
+      dy = -dy;
+      dx += (Math.random() - 0.5) * 2;
+    }
+
+    banana.style.left = x + 'px';
+    banana.style.top = y + 'px';
+
+    // 状態を保存
+    localStorage.setItem('banana_x', x);
+    localStorage.setItem('banana_y', y);
+    localStorage.setItem('banana_dx', dx);
+    localStorage.setItem('banana_dy', dy);
+
+    requestAnimationFrame(moveBanana);
+  }
+  moveBanana();
+
+  // 投稿機能＋ローカル保存
+  const postButton = document.getElementById('postButton');
+  const postText = document.getElementById('postText');
+  const timeline = document.getElementById('timeline');
+
+  function displayPosts(posts) {
+    timeline.innerHTML = '';
+    posts.forEach(text => {
+      const newPost = document.createElement('div');
+      newPost.className = 'post';
+      newPost.textContent = text;
+      timeline.prepend(newPost);
+    });
+  }
+
+  function savePosts(posts) {
+    localStorage.setItem('yuruenjin_posts', JSON.stringify(posts));
+  }
+
+  function loadPosts() {
+    const saved = localStorage.getItem('yuruenjin_posts');
+    return saved ? JSON.parse(saved) : [];
+  }
+
+  let posts = loadPosts();
+  displayPosts(posts);
+
+  postButton.addEventListener('click', () => {
+    const text = postText.value.trim();
+    if (text) {
+      posts.push(text);
+      savePosts(posts);
+      displayPosts(posts);
