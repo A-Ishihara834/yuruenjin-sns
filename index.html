@@ -1,70 +1,10 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ゆる縁JIN SNS</title>
-
-  <!-- 共通スタイル（ポータルのCSSを絶対URLで読込） -->
-  <link rel="stylesheet" href="https://a-ishihara834.github.io/yuruenjin/style.css?v=0001">
-
-  <!-- フォント読み込み -->
-  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1&family=Noto+Sans+JP&display=swap" rel="stylesheet">
-
-  <style>
-    /* 🍌 ミニぷるバナナ配置 */
-    .mini-banana {
-      position: fixed;
-      bottom: 1rem;
-      left: 1rem;
-      z-index: 1000;
-    }
-    /* アニメーション（ポータルと同じ） */
-    .mini-banana img {
-      animation: ring 1s infinite ease-in-out;
-      transform-origin: 50% 0;
-    }
-    @keyframes ring {
-      0%   { transform: rotate(0deg); }
-      10%  { transform: rotate(10deg); }
-      20%  { transform: rotate(-8deg); }
-      30%  { transform: rotate(6deg); }
-      40%  { transform: rotate(-4deg); }
-      50%  { transform: rotate(2deg); }
-      60%  { transform: rotate(-1deg); }
-      70%,100% { transform: rotate(0deg); }
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <!-- 眉毛臼キャラ -->
-    <img src="images/mayuge-usu.png" alt="眉毛臼キャラ">
-    <h1>🍌 ゆる縁JIN SNS</h1>
-  </header>
-
-  <main>
-    <div class="card">
-      <h2>🌼 はじめての投稿</h2>
-      <div class="image-row">
-        <img src="images/flower.png" alt="花の挿絵">
-        <img src="images/mayuge-usu.png" alt="眉毛臼キャラ">
-      </div>
-      <p>ようこそ、中庭へ。ここからあなたのSNS物語が始まります。</p>
+<main>
+  <div class="card">
+    <h2>🌼 はじめての投稿</h2>
+    <div class="image-row">
+      <img src="images/flower.png" alt="花の挿絵">
+      <img src="images/mayuge-usu.png" alt="眉毛臼キャラ">
     </div>
-
-   
-  </main>
-
-  <!-- 🍌 ミニぷるバナナ（ポータルへ戻るリンク） -->
-  <div class="mini-banana">
-    <a href="https://a-ishihara834.github.io/yuruenjin/">
-      <img src="https://a-ishihara834.github.io/yuruenjin/images/saru-banana.png" alt="ポータルへ戻るバナナ" width="40">
-    </a>
+    <p>ようこそ、中庭へ。ここからあなたのSNS物語が始まります。</p>
   </div>
-
-  <footer>
-    <a href="https://a-ishihara834.github.io/yuruenjin/">← ポータルに戻る</a>
-  </footer>
-</body>
-</html>
+</main>
